@@ -64,6 +64,7 @@ addEventListener("keyup", function (e) {
 
 // Reset the game when the player catches a princess
 var reset = function () {
+	localStorage.setItem("princess",princessesCaught);
 	hero.x = canvas.width / 2;
 	hero.y = canvas.height / 2;
 
@@ -91,7 +92,7 @@ var generatestones = function (n){
 var canpass = function (to){
 
 	for (var i = 0; i < parseInt(numberStones); i++) {
-		if(hero.x <= (stones[i].x + 32) && stones[i].x <= (hero.x + 32)	&& hero.y <= (stones[i].y + 32)	&& stones[i].y <= (hero.y + 32)){
+		if(hero.x <= (stones[i].x + 28) && stones[i].x <= (hero.x + 28)	&& hero.y <= (stones[i].y + 28)	&& stones[i].y <= (hero.y + 28)){
 			if(to=="l"){
 				hero.x += 5;
 			}else if(to=="r"){
@@ -192,6 +193,10 @@ var main = function () {
 
 	then = now;
 };
+
+if (localStorage.getItem("princess")!=null) {
+	princessesCaught=localStorage.getItem("princess");
+}
 
 // Let's play this game!
 reset();
